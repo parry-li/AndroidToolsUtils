@@ -344,6 +344,14 @@ getImageType                    : 获取图片类型
 compressByScale                 : 按缩放压缩
 compressByQuality               : 按质量压缩
 compressBySampleSize            : 按采样大小压缩
+
+---------------------------------------------------
+circleBitmap                    : 图片圆形
+zoom                            : 图片宽高的压缩
+centerSquareScaleBitmap         : 截取中间图片
+getBitmapformImgPath            : string路径获取bitmap
+getBitmapFormUri                : uri路径获取bitmap
+ImgUpdateDirection              : 改变拍完照后图片方向不正的问题
 ```
 
 * ### 意图相关 -> [IntentUtils.java][intent.java]
