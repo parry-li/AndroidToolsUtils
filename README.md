@@ -183,6 +183,7 @@ init: 初始化
 ```
 
 * ### 设备相关 -> [DeviceUtils.java][device.java] 
+```
 isDeviceRooted   : 判断设备是否 rooted
 getSDKVersionName: 获取设备系统版本号
 getSDKVersionCode: 获取设备系统版本码
