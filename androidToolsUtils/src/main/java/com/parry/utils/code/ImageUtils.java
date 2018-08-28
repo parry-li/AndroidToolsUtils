@@ -1,5 +1,6 @@
 package com.parry.utils.code;
 
+import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
@@ -22,6 +23,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.media.ExifInterface;
+import android.net.Uri;
 import android.os.Build;
 import android.renderscript.Allocation;
 import android.renderscript.Element;
@@ -34,13 +36,16 @@ import android.support.annotation.IntRange;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.View;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -1924,4 +1929,230 @@ public final class ImageUtils {
             }
         }
     }
+
+
+
+    public static Bitmap circleBitmap(Bitmap source) {
+        int width = source.getWidth();
+        Bitmap bitmap = Bitmap.createBitmap(width, width, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Paint paint = new Paint();
+        paint.setAntiAlias(true);
+        canvas.drawCircle(width / 2, width / 2, width / 2, paint);
+
+        //设置图片相交情况下的处理方式
+        //setXfermode：设置当绘制的图像出现相交情况时候的处理方式的,它包含的常用模式有：
+        //PorterDuff.Mode.SRC_IN 取两层图像交集部分,只显示上层图像
+        //PorterDuff.Mode.DST_IN 取两层图像交集部分,只显示下层图像
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        //在画布上绘制bitmap
+        canvas.drawBitmap(source, 0, 0, paint);
+
+        return bitmap;
+
+    }
+
+    //实现图片的压缩处理
+    //设置宽高必须使用浮点型，否则导致压缩的比例：0
+    public static Bitmap zoom(Bitmap source, float width, float height) {
+
+        Matrix matrix = new Matrix();
+        //图片的压缩处理
+        matrix.postScale(width / source.getWidth(), height / source.getHeight());
+
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, false);
+    }
+
+
+
+
+    /**截取中间图片
+     * @param bitmap
+     * @param edgeLength  边的长度
+     * @return
+     */
+    public static Bitmap centerSquareScaleBitmap(Bitmap bitmap, int edgeLength)
+    {
+        if(null == bitmap || edgeLength <= 0)
+        {
+            return  null;
+        }
+
+        Bitmap result = bitmap;
+        int widthOrg = bitmap.getWidth();
+        int heightOrg = bitmap.getHeight();
+
+        if(widthOrg > edgeLength && heightOrg > edgeLength)
+        {
+            //压缩到一个最小长度是edgeLength的bitmap
+            int longerEdge = (int)(edgeLength * Math.max(widthOrg, heightOrg) / Math.min(widthOrg, heightOrg));
+
+            int scaledWidth = widthOrg > heightOrg ? longerEdge : edgeLength;
+            int scaledHeight = widthOrg > heightOrg ? edgeLength : longerEdge;
+            Bitmap scaledBitmap;
+
+            try{
+                scaledBitmap = Bitmap.createScaledBitmap(bitmap, scaledWidth, scaledHeight, true);
+            }
+            catch(Exception e){
+                return null;
+            }
+
+            //从图中截取正中间的正方形部分。
+            int xTopLeft = (scaledWidth - edgeLength) / 2;
+            int yTopLeft = (scaledHeight - edgeLength) / 2;
+
+            try{
+                result = Bitmap.createBitmap(scaledBitmap, xTopLeft, yTopLeft, edgeLength, edgeLength);
+                scaledBitmap.recycle();
+            }
+            catch(Exception e){
+                return null;
+            }
+        }
+
+        return result;
+    }
+
+
+    /**
+     *
+     * 返回Bitmap
+     *
+     * @param imgPath  图像路径
+     * @param
+     */
+    public static Bitmap getBitmapformImgPath(final String imgPath) {
+
+        // 设置参数
+        BitmapFactory.Options options = new BitmapFactory.Options();
+        options.inJustDecodeBounds = true; // 只获取图片的大小信息，而不是将整张图片载入在内存中，避免内存溢出
+        BitmapFactory.decodeFile(imgPath, options);
+        int height = options.outHeight;
+        int width= options.outWidth;
+        int inSampleSize = 2; // 默认像素压缩比例，压缩为原图的1/2
+        int minLen = Math.min(height, width); // 原图的最小边长
+        if(minLen > 700) { // 如果原始图像的最小边长大于100dp（此处单位我认为是dp，而非px）
+            float ratio = (float)minLen / 700.0f; // 计算像素压缩比例
+            inSampleSize = (int)ratio;
+        }
+        options.inJustDecodeBounds = false; // 计算好压缩比例后，这次可以去加载原图了
+        options.inSampleSize = inSampleSize; // 设置为刚才计算的压缩比例
+        Bitmap bm = BitmapFactory.decodeFile(imgPath, options); // 解码文件
+        Log.w("TAG", "size: " + bm.getByteCount() + " width: " + bm.getWidth() + " heigth:" + bm.getHeight()); // 输出图像数据
+
+        return bm;
+    }
+
+
+
+    public static Bitmap getBitmapFormUri(Activity ac, Uri uri) throws FileNotFoundException, IOException {
+        InputStream input = ac.getContentResolver().openInputStream(uri);
+        BitmapFactory.Options onlyBoundsOptions = new BitmapFactory.Options();
+        onlyBoundsOptions.inJustDecodeBounds = true;
+        onlyBoundsOptions.inDither = true;//optional
+        onlyBoundsOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        BitmapFactory.decodeStream(input, null, onlyBoundsOptions);
+        input.close();
+        int originalWidth = onlyBoundsOptions.outWidth;
+        int originalHeight = onlyBoundsOptions.outHeight;
+        if ((originalWidth == -1) || (originalHeight == -1))
+            return null;
+        //图片分辨率以480x800为标准
+        float hh = 800f;//这里设置高度为800f
+        float ww = 480f;//这里设置宽度为480f
+        //缩放比。由于是固定比例缩放，只用高或者宽其中一个数据进行计算即可
+        int be = 1;//be=1表示不缩放
+        if (originalWidth > originalHeight && originalWidth > ww) {//如果宽度大的话根据宽度固定大小缩放
+            be = (int) (originalWidth / ww);
+        } else if (originalWidth < originalHeight && originalHeight > hh) {//如果高度高的话根据宽度固定大小缩放
+            be = (int) (originalHeight / hh);
+        }
+        if (be <= 0)
+            be = 1;
+        //比例压缩
+        BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+        bitmapOptions.inSampleSize = be;//设置缩放比例
+        bitmapOptions.inDither = true;//optional
+        bitmapOptions.inPreferredConfig = Bitmap.Config.ARGB_8888;//optional
+        input = ac.getContentResolver().openInputStream(uri);
+        Bitmap bitmap = BitmapFactory.decodeStream(input, null, bitmapOptions);
+        input.close();
+
+        return compressImage(bitmap);//再进行质量压缩
+    }
+    /**
+     * 质量压缩方法
+     *
+     * @param image
+     * @return
+     */
+    public static Bitmap compressImage(Bitmap image) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
+        int options = 100;
+        while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+            baos.reset();//重置baos即清空baos
+            //第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差  ，第三个参数：保存压缩后的数据的流
+            image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中
+            options -= 10;//每次都减少10
+        }
+        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());//把压缩后的数据baos存放到ByteArrayInputStream中
+        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);//把ByteArrayInputStream数据生成图片
+        return bitmap;
+    }
+
+    //改变拍完照后图片方向不正的问题
+    public static Bitmap ImgUpdateDirection(String filepath) {
+        Bitmap orc_bitmap =  getBitmapformImgPath(filepath);
+        int digree = 0;//图片旋转的角度
+        //根据图片的filepath获取到一个ExifInterface的对象
+        ExifInterface exif = null;
+        try {
+            exif = new ExifInterface(filepath);
+            if (exif != null) {
+
+                // 读取图片中相机方向信息
+                int ori = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED);
+                // 计算旋转角度
+                switch (ori) {
+                    case ExifInterface.ORIENTATION_ROTATE_90:
+                        digree = 90;
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_180:
+                        digree = 180;
+                        break;
+                    case ExifInterface.ORIENTATION_ROTATE_270:
+                        digree = 270;
+                        break;
+                    default:
+                        digree = 0;
+                        break;
+
+                }
+
+            }
+            //如果图片不为0
+            if (digree != 0) {
+                // 旋转图片
+                Matrix m = new Matrix();
+                m.postRotate(digree);
+                orc_bitmap = Bitmap.createBitmap(orc_bitmap, 0, 0, orc_bitmap.getWidth(),
+                        orc_bitmap.getHeight(), m, true);
+            }
+            if (orc_bitmap != null) {
+
+
+//                ylMeHeadImage.setImageBitmap(BitmapUtils.circleBitmap(orc_bitmap));
+//                //                imageView.setImageBitmap(orc_bitmap);
+//                sendHeadImage(orc_bitmap);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            exif = null;
+        }
+        return orc_bitmap;
+    }
+
+
 }
