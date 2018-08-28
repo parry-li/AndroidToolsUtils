@@ -208,7 +208,11 @@ base64Decode       : Base64 解码
 htmlEncode         : Html 编码
 htmlDecode         : Html 解码
 ```
+* ### MD5相关 -> [MD5Utils.java] 
+```
+encode             : 32位加密
 
+```
 * ### 加密解密相关 -> [EncryptUtils.java][encrypt.java] 
 ```
 encryptMD2, encryptMD2ToString                        : MD2 加密
