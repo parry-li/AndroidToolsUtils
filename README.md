@@ -1,8 +1,13 @@
-# AndroidToolsUtils
+Android的工具类
+
 使用步骤
+
 1.在build.gradlet添加
+
 allprojects {
+
 		repositories {
+		
 			...
 			maven { url 'https://jitpack.io' }
 		}
