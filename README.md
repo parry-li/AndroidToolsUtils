@@ -13,4 +13,5 @@ allprojects {
 		}
 	}
 2. 在项目build.gradlet添加
-implementation 'com.github.parry-li:AndroidToolsUtils:-SNAPSHOT'
+
+ implementation 'com.github.parry-li:AndroidToolsUtils:-SNAPSHOT'
