@@ -20,7 +20,7 @@ allprojects {
  
  ## APIs
 
-* ### Activity 相关 -> [ActivityUtils.java][activity.java] -> [Demo][activity.demo]
+* ### Activity 相关 -> [ActivityUtils.java][activity.java]
 ```
 isActivityExists               : 判断 Activity 是否存在
 startActivity                  : 启动 Activity
@@ -38,7 +38,7 @@ finishAllActivities            : 结束所有 Activity
 finishAllActivitiesExceptNewest: 结束除最新之外的所有 Activity
 ```
 
-* ### App 相关 -> [AppUtils.java][app.java] -> [Demo][app.demo]
+* ### App 相关 -> [AppUtils.java][app.java] 
 ```
 registerAppStatusChangedListener  : 注册 App 前后台切换监听器
 unregisterAppStatusChangedListener: 注销 App 前后台切换监听器
@@ -69,7 +69,7 @@ getAppInfo                        : 获取 App 信息
 getAppsInfo                       : 获取所有已安装 App 信息
 ```
 
-* ### 栏相关 -> [BarUtils.java][bar.java] -> [Demo][bar.demo]
+* ### 栏相关 -> [BarUtils.java][bar.java] 
 ```
 getStatusBarHeight                   : 获取状态栏高度（px）
 setStatusBarVisibility               : 设置状态栏是否可见
@@ -91,7 +91,7 @@ getNavBarColor                       : 获取导航栏颜色
 isNavBarVisible                      : 判断导航栏是否可见
 ```
 
-* ### 磁盘缓存相关 -> [CacheDiskUtils.java][cache_disk.java] -> [Test][cache_disk.test]
+* ### 磁盘缓存相关 -> [CacheDiskUtils.java][cache_disk.java]
 ```
 getInstance             : 获取缓存实例
 Instance.put            : 缓存中写入数据
@@ -109,7 +109,7 @@ Instance.remove         : 根据键值移除缓存
 Instance.clear          : 清除所有缓存
 ```
 
-* ### 二级缓存相关 -> [CacheDoubleUtils.java][cache_double.java] -> [Test][cache_double.test]
+* ### 二级缓存相关 -> [CacheDoubleUtils.java][cache_double.java] 
 ```
 getInstance                 : 获取缓存实例
 Instance.put                : 缓存中写入数据
@@ -128,7 +128,7 @@ Instance.remove             : 根据键值移除缓存
 Instance.clear              : 清除所有缓存
 ```
 
-* ### 内存缓存相关 -> [CacheMemoryUtils.java][cache_memory.java] -> [Test][cache_memory.test]
+* ### 内存缓存相关 -> [CacheMemoryUtils.java][cache_memory.java]
 ```
 getInstance           : 获取缓存实例
 Instance.put          : 缓存中写入数据
@@ -138,7 +138,7 @@ Instance.remove       : 根据键值移除缓存
 Instance.clear        : 清除所有缓存
 ```
 
-* ### 清除相关 -> [CleanUtils.java][clean.java] -> [Demo][clean.demo]
+* ### 清除相关 -> [CleanUtils.java][clean.java]
 ```
 cleanInternalCache   : 清除内部缓存
 cleanInternalFiles   : 清除内部文件
@@ -155,7 +155,7 @@ closeIO       : 关闭 IO
 closeIOQuietly: 安静关闭 IO
 ```
 
-* ### 转换相关 -> [ConvertUtils.java][convert.java] -> [Test][convert.test]
+* ### 转换相关 -> [ConvertUtils.java][convert.java] 
 ```
 bytes2Bits, bits2Bytes                  : bytes 与 bits 互转
 bytes2Chars, chars2Bytes                : bytes 与 chars 互转
@@ -182,8 +182,7 @@ sp2px, px2sp                            : sp 与 px 互转
 init: 初始化
 ```
 
-* ### 设备相关 -> [DeviceUtils.java][device.java] -> [Demo][device.demo]
-```
+* ### 设备相关 -> [DeviceUtils.java][device.java] 
 isDeviceRooted   : 判断设备是否 rooted
 getSDKVersionName: 获取设备系统版本号
 getSDKVersionCode: 获取设备系统版本码
@@ -198,7 +197,7 @@ reboot2Recovery  : 重启到 recovery
 reboot2Bootloader: 重启到 bootloader
 ```
 
-* ### 编码解码相关 -> [EncodeUtils.java][encode.java] -> [Test][encode.test]
+* ### 编码解码相关 -> [EncodeUtils.java][encode.java] 
 ```
 urlEncode          : URL 编码
 urlDecode          : URL 解码
@@ -209,7 +208,7 @@ htmlEncode         : Html 编码
 htmlDecode         : Html 解码
 ```
 
-* ### 加密解密相关 -> [EncryptUtils.java][encrypt.java] -> [Test][encrypt.test]
+* ### 加密解密相关 -> [EncryptUtils.java][encrypt.java] 
 ```
 encryptMD2, encryptMD2ToString                        : MD2 加密
 encryptMD5, encryptMD5ToString                        : MD5 加密
@@ -235,7 +234,7 @@ encryptRSA, encryptRSA2HexString, encryptRSA2Base64   : RSA 加密
 decryptRSA, decryptHexStringRSA, decryptBase64RSA     : RSA 解密
 ```
 
-* ### 文件相关 -> [FileIOUtils.java][fileio.java] -> [Test][fileio.test]
+* ### 文件相关 -> [FileIOUtils.java][fileio.java] 
 ```
 writeFileFromIS            : 将输入流写入文件
 writeFileFromBytesByStream : 将字节数组写入文件
@@ -250,7 +249,7 @@ readFile2BytesByMap        : 读取文件到字节数组中
 setBufferSize              : 设置缓冲区尺寸
 ```
 
-* ### 文件相关 -> [FileUtils.java][file.java] -> [Test][file.test]
+* ### 文件相关 -> [FileUtils.java][file.java] 
 ```
 getFileByPath             : 根据文件路径获取文件
 isFileExists              : 判断文件是否存在
@@ -286,7 +285,7 @@ getFileNameNoExtension    : 根据全路径获取文件名不带拓展名
 getFileExtension          : 根据全路径获取文件拓展名
 ```
 
-* ### Fragment 相关 -> [FragmentUtils.java][fragment.java] -> [Demo][fragment.demo]
+* ### Fragment 相关 -> [FragmentUtils.java][fragment.java] 
 ```
 add                   : 新增 fragment
 show                  : 显示 fragment
@@ -314,7 +313,7 @@ setBackgroundResource : 设置背景资源
 setBackground         : 设置背景
 ```
 
-* ### 图片相关 -> [ImageUtils.java][image.java] -> [Demo][image.demo]
+* ### 图片相关 -> [ImageUtils.java][image.java]
 ```
 bitmap2Bytes, bytes2Bitmap      : bitmap 与 bytes 互转
 drawable2Bitmap, bitmap2Drawable: drawable 与 bitmap 互转
@@ -360,7 +359,7 @@ getShutdownIntent                : 获取关机的意图
 getCaptureIntent                 : 获取拍照的意图
 ```
 
-* ### 键盘相关 -> [KeyboardUtils.java][keyboard.java] -> [Demo][keyboard.demo]
+* ### 键盘相关 -> [KeyboardUtils.java][keyboard.java]
 ```
 showSoftInput                     : 动态显示软键盘
 hideSoftInput                     : 动态隐藏软键盘
@@ -373,7 +372,7 @@ fixSoftInputLeaks                 : 修复软键盘内存泄漏
 clickBlankArea2HideSoftInput      : 点击屏幕空白区域隐藏软键盘
 ```
 
-* ### 日志相关 -> [LogUtils.java][log.java] -> [Demo][log.demo]
+* ### 日志相关 -> [LogUtils.java][log.java] 
 ```
 getConfig                : 获取 log 配置
 Config.setLogSwitch      : 设置 log 总开关
@@ -409,7 +408,7 @@ json                     : log 字符串之 json
 xml                      : log 字符串之 xml
 ```
 
-* ### 网络相关 -> [NetworkUtils.java][network.java] -> [Demo][network.demo]
+* ### 网络相关 -> [NetworkUtils.java][network.java] 
 ```
 openWirelessSettings  : 打开网络设置界面
 isConnected           : 判断网络是否连接
@@ -432,7 +431,7 @@ getNetMaskByWifi      : 根据 WiFi 获取子网掩码 IP 地址
 getServerAddressByWifi: 根据 WiFi 获取服务端 IP 地址
 ```
 
-* ### 对象相关 -> [ObjectUtils.java][object.java] -> [Test][object.test]
+* ### 对象相关 -> [ObjectUtils.java][object.java]
 ```
 isEmpty       : 判断对象是否为空
 isNotEmpty    : 判断对象是否非空
@@ -442,7 +441,7 @@ getOrDefault  : 获取非空或默认对象
 hashCode      : 获取对象哈希值
 ```
 
-* ### 权限相关 -> [PermissionUtils.java][permission.java] -> [Demo][permission.demo]
+* ### 权限相关 -> [PermissionUtils.java][permission.java] 
 ```
 getPermissions          : 获取应用权限
 isGranted               : 判断权限是否被授予
@@ -454,7 +453,7 @@ theme                   : 设置主题
 request                 : 开始请求
 ```
 
-* ### 手机相关 -> [PhoneUtils.java][phone.java] -> [Demo][phone.demo]
+* ### 手机相关 -> [PhoneUtils.java][phone.java] 
 ```
 isPhone            : 判断设备是否是手机
 getDeviceId        : 获取设备码
@@ -473,7 +472,7 @@ sendSms            : 跳至发送短信界面
 sendSmsSilent      : 发送短信
 ```
 
-* ### 进程相关 -> [ProcessUtils.java][process.java] -> [Demo][process.demo]
+* ### 进程相关 -> [ProcessUtils.java][process.java] 
 ```
 getForegroundProcessName  : 获取前台线程包名
 killAllBackgroundProcesses: 杀死所有的后台服务进程
@@ -482,7 +481,7 @@ isMainProcess             : 判断是否运行在主进程
 getCurrentProcessName     : 获取当前进程名称
 ```
 
-* ### 反射相关 -> [ReflectUtils.java][reflect.java] -> [Test][reflect.test]
+* ### 反射相关 -> [ReflectUtils.java][reflect.java]
 ```
 reflect    : 设置要反射的类
 newInstance: 实例化反射对象
@@ -491,7 +490,7 @@ method     : 设置反射的方法
 get        : 获取反射想要获取的
 ```
 
-* ### 正则相关 -> [RegexUtils.java][regex.java] -> [Test][regex.test]
+* ### 正则相关 -> [RegexUtils.java][regex.java] 
 ```
 isMobileSimple : 验证手机号（简单）
 isMobileExact  : 验证手机号（精确）
@@ -511,7 +510,7 @@ getReplaceFirst: 替换正则匹配的第一部分
 getReplaceAll  : 替换所有正则匹配的部分
 ```
 
-* ### 资源相关 -> [ResourceUtils.java][resource.java] -> [Demo][resource.demo]
+* ### 资源相关 -> [ResourceUtils.java][resource.java] 
 ```
 copyFileFromAssets: 从 assets 中拷贝文件
 readAssets2String : 从 assets 中读取字符串
@@ -521,7 +520,7 @@ readRaw2String    : 从 raw 中读取字符串
 readRaw2List      : 从 raw 中按行读取字符串
 ```
 
-* ### 屏幕相关 -> [ScreenUtils.java][screen.java] -> [Demo][screen.demo]
+* ### 屏幕相关 -> [ScreenUtils.java][screen.java] 
 ```
 getScreenWidth             : 获取屏幕的宽度（单位：px）
 getScreenHeight            : 获取屏幕的高度（单位：px）
@@ -548,7 +547,7 @@ restoreAdaptScreen         : 恢复适配屏幕
 isAdaptScreen              : 是否适配屏幕
 ```
 
-* ### SD 卡相关 -> [SDCardUtils.java][sdcard.java] -> [Demo][sdcard.demo]
+* ### SD 卡相关 -> [SDCardUtils.java][sdcard.java] 
 ```
 isSDCardEnableByEnvironment: 根据 Environment 判断 SD 卡是否可用
 getSDCardPathByEnvironment : 根据 Environment 获取 SD 卡路径
@@ -582,7 +581,7 @@ getMeasuredWidth : 获取测量视图宽度
 getMeasuredHeight: 获取测量视图高度
 ```
 
-* ### Snackbar 相关 -> [SnackbarUtils.java][snackbar.java] -> [Demo][snackbar.demo]
+* ### Snackbar 相关 -> [SnackbarUtils.java][snackbar.java] 
 ```
 with           : 设置 snackbar 依赖 view
 setMessage     : 设置消息
@@ -601,7 +600,7 @@ getView        : 获取 snackbar 视图
 addView        : 添加 snackbar 视图
 ```
 
-* ### SpannableString 相关 -> [SpanUtils.java][span.java] -> [Demo][span.demo]
+* ### SpannableString 相关 -> [SpanUtils.java][span.java]
 ```
 setFlag           : 设置标识
 setForegroundColor: 设置前景色
@@ -636,7 +635,7 @@ appendSpace       : 追加空白
 create            : 创建样式字符串
 ```
 
-* ### SP 相关 -> [SPUtils.java][sp.java] -> [Demo][sp.demo]
+* ### SP 相关 -> [SPUtils.java][sp.java]
 ```
 getInstance        : 获取 SP 实例
 Instance.put       : SP 中写入数据
@@ -651,7 +650,7 @@ Instance.remove    : SP 中移除该 key
 Instance.clear     : SP 中清除所有数据
 ```
 
-* ### 字符串相关 -> [StringUtils.java][string.java] -> [Test][string.test]
+* ### 字符串相关 -> [StringUtils.java][string.java]
 ```
 isEmpty         : 判断字符串是否为 null 或长度为 0
 isTrimEmpty     : 判断字符串是否为 null 或全为空格
@@ -667,7 +666,7 @@ toDBC           : 转化为半角字符
 toSBC           : 转化为全角字符
 ```
 
-* ### 线程相关 -> [ThreadUtils.java][thread.java] -> [Test][thread.test]
+* ### 线程相关 -> [ThreadUtils.java][thread.java]
 ```
 isMainThread            : 判断当前是否主线程
 getFixedPool            : 获取固定线程池
@@ -696,7 +695,7 @@ executeByCustomAtFixRate: 在自定义线程池按固定频率执行任务
 cancel                  : 取消任务的执行
 ```
 
-* ### 时间相关 -> [TimeUtils.java][time.java] -> [Test][time.test]
+* ### 时间相关 -> [TimeUtils.java][time.java] 
 ```
 millis2String           : 将时间戳转为时间字符串
 string2Millis           : 将时间字符串转为时间戳
@@ -727,7 +726,7 @@ getChineseZodiac        : 获取生肖
 getZodiac               : 获取星座
 ```
 
-* ### 吐司相关 -> [ToastUtils.java][toast.java] -> [Demo][toast.demo]
+* ### 吐司相关 -> [ToastUtils.java][toast.java] 
 ```
 setGravity     : 设置吐司位置
 setBgColor     : 设置背景颜色
@@ -747,7 +746,7 @@ file2Uri: file 转 uri
 uri2File: uri 转 file
 ```
 
-* ### 压缩相关 -> [ZipUtils.java][zip.java] -> [Test][zip.test]
+* ### 压缩相关 -> [ZipUtils.java][zip.java] 
 ```
 zipFiles          : 批量压缩文件
 zipFile           : 压缩文件
