@@ -627,7 +627,7 @@ public final class LogUtils {
         private int     mStackOffset       = 0;     // The stack's offset of log.
         private int     mSaveDays          = -1;    // The save days of log.
 
-        private Config() {
+        public Config() {
             if (mDefaultDir != null) return;
             if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                     && Utils.getApp().getExternalCacheDir() != null)
