@@ -610,6 +610,7 @@ public final class LogUtils {
     }
 
     public static class Config {
+        /*配置开关使用：如  LogUtils.getConfig().setGlobalTag*/
         private String mDefaultDir;// The default storage directory of log.
         private String mDir;       // The storage directory of log.
         private String  mFilePrefix        = "util";// The file prefix of log.
@@ -627,7 +628,7 @@ public final class LogUtils {
         private int     mStackOffset       = 0;     // The stack's offset of log.
         private int     mSaveDays          = -1;    // The save days of log.
 
-        public Config() {
+        private Config() {
             if (mDefaultDir != null) return;
             if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())
                     && Utils.getApp().getExternalCacheDir() != null)

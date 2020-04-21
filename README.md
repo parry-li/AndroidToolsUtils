@@ -387,6 +387,8 @@ clickBlankArea2HideSoftInput      : 点击屏幕空白区域隐藏软键盘
 
 * ### 日志相关 -> [LogUtils.java][log.java] 
 ```
+配置开关使用：如  LogUtils.getConfig().setGlobalTag
+
 getConfig                : 获取 log 配置
 Config.setLogSwitch      : 设置 log 总开关
 Config.setConsoleSwitch  : 设置 log 控制台开关
