@@ -14,7 +14,7 @@ allprojects {
 	}
 2. 在项目build.gradlet添加
 
-implementation 'com.github.parry-li:AndroidToolsUtils:1.0.1-SNAPSHOT'
+ implementation 'com.github.parry-li:AndroidToolsUtils:1.1'
  
  
  
